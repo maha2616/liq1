@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard - LiqReserve</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body onload="checkLogin()" class="bg-gray-100">
+
+  <header class="flex justify-between items-center p-4 bg-white shadow-md">
+    <h1 class="text-2xl font-bold text-blue-600">LiqReserve</h1>
+    <div class="space-x-4">
+      <span id="username" class="text-gray-700"></span>
+      <button onclick="logout()" class="bg-red-500 text-white px-4 py-2 rounded">Logout</button>
+    </div>
+  </header>
+
+  <main class="p-6">
+    <h2 class="text-2xl font-semibold mb-4">Welcome to your Dashboard</h2>
+    <p class="text-gray-600">This is a protected area. You're logged in now!</p>
+  </main>
+
+  <script>
+    function checkLogin() {
+      const isLoggedIn = localStorage.getItem("liq_loggedin");
+      const name = localStorage.getItem("liq_name");
+
+      if (isLoggedIn !== "true") {
+        alert("You must be logged in to view the dashboard");
+        window.location.href = "login.html";
+      } else {
+        document.getElementById("username").textContent = "👋 " + name;
+      }
+    }
+
+    function logout() {
+      localStorage.setItem("liq_loggedin", "false");
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>

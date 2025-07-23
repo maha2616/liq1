@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Add Listing - LiqReserve</title>
+  <link rel="stylesheet" href="style.css"/>
+
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "YOUR_API_KEY",
+      authDomain: "YOUR_AUTH_DOMAIN",
+      projectId: "YOUR_PROJECT_ID",
+      storageBucket: "YOUR_BUCKET",
+      messagingSenderId: "YOUR_SENDER_ID",
+      appId: "YOUR_APP_ID"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+  </script>
+
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    h1 { text-align: center; }
+    form { max-width: 500px; margin: auto; }
+    label { display: block; margin-top: 15px; }
+    input, select, textarea {
+      width: 100%; padding: 10px; margin-top: 5px; border-radius: 5px; border: 1px solid #ccc;
+    }
+    button {
+      margin-top: 20px; width: 100%; padding: 12px; background-color: #007bff;
+      color: white; border: none; border-radius: 5px; font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Add Water Listing</h1>
+
+  <form id="listingForm">
+    <label>Water Quantity (Litres):</label>
+    <input type="number" id="quantity" required />
+
+    <label>Price per Litre (₹):</label>
+    <input type="number" id="price" required />
+
+    <label>Location:</label>
+    <input type="text" id="location" required />
+
+    <label>Contact Number:</label>
+    <input type="text" id="contact" required />
+
+    <label>Additional Info:</label>
+    <textarea id="info" rows="3"></textarea>
+
+    <button type="submit">Submit Listing</button>
+  </form>
+
+  <script>
+    auth.onAuthStateChanged(async (user) => {
+      if (!user) {
+        alert("You must be signed in to add a listing.");
+        window.location.href = "login.html";
+        return;
+      }
+
+      const userDoc = await db.collection("users").doc(user.uid).get();
+      if (!userDoc.exists || userDoc.data().role !== "Water Seller") {
+        alert("Only registered sellers can add listings.");
+        window.location.href = "profile.html";
+        return;
+      }
+
+      document.getElementById("listingForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const data = {
+          userId: user.uid,
+          quantity: document.getElementById("quantity").value,
+          price: document.getElementById("price").value,
+          location: document.getElementById("location").value,
+          contact: document.getElementById("contact").value,
+          info: document.getElementById("info").value,
+          createdAt: new Date()
+        };
+
+        try {
+          await db.collection("listings").add(data);
+          alert("Listing added successfully!");
+          window.location.href = "my-listings.html";
+        } catch (err) {
+          console.error("Error adding listing:", err);
+          alert("Failed to add listing.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>

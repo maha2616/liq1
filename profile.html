@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Profile</title>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #f5f7fa;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: auto;
+      padding: 16px;
+    }
+
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 20px;
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+
+    .profile-header img {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+    }
+
+    .profile-info {
+      flex-grow: 1;
+    }
+
+    .profile-info h2 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .profile-info p {
+      margin: 4px 0;
+      color: teal;
+      font-weight: bold;
+    }
+
+    .profile-info small {
+      color: #666;
+    }
+
+    .edit-btn {
+      padding: 6px 12px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      cursor: pointer;
+      background: #f0f0f0;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .stat-box {
+      flex: 1;
+      margin: 5px;
+      background: white;
+      padding: 16px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    }
+
+    .stat-box h3 {
+      margin: 0;
+      color: #555;
+    }
+
+    .stat-box p {
+      font-size: 18px;
+      font-weight: bold;
+      margin: 6px 0 0 0;
+    }
+
+    .menu {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      margin-bottom: 20px;
+    }
+
+    .menu-item {
+      padding: 16px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+
+    .menu-item span {
+      font-size: 16px;
+    }
+
+    .menu-item i {
+      font-size: 14px;
+      color: #888;
+    }
+
+    .section-title {
+      margin-top: 24px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-around;
+      background: white;
+      border-top: 1px solid #ddd;
+      padding: 10px 0;
+    }
+
+    .bottom-nav a {
+      text-align: center;
+      color: #333;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .bottom-nav .active {
+      color: teal;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="profile-header">
+      <img src="https://i.pravatar.cc/100?img=3" alt="User Photo" />
+      <div class="profile-info">
+        <h2>Demo User</h2>
+        <p>Water Buyer</p>
+        <small>📍 San Francisco, CA</small>
+      </div>
+      <button class="edit-btn">Edit</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat-box">
+        <h3>Total Spent</h3>
+        <p>₹5,600.00</p>
+      </div>
+      <div class="stat-box">
+        <h3>Total Earned</h3>
+        <p>₹0.00</p>
+      </div>
+    </div>
+
+    <div class="menu">
+      <div class="menu-item"><span>🔔 Notifications</span><i>›</i></div>
+      <div class="menu-item"><span>💳 Payment Methods</span><i>›</i></div>
+      <div class="menu-item"><span>🔒 Privacy & Security</span><i>›</i></div>
+      <div class="menu-item"><span>❓ Help & Support</span><i>›</i></div>
+      <div class="menu-item"><span>⚙️ Settings</span><i>›</i></div>
+    </div>
+
+    <div class="section-title">🔁 Recent Transactions</div>
+    <!-- You can add a transaction list here -->
+
+  </div>
+
+  <div class="bottom-nav">
+    <a href="marketplace.html">Market</a>
+    <a href="listings.html">Listings</a>
+    <a href="profile.html" class="active">Profile</a>
+    <a href="index.html">Home</a>
+  </div>
+</body>
+</html>

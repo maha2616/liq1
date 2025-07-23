@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Marketplace Listing</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f7f9fc;
+    }
+    .container {
+      padding: 16px;
+    }
+    .price {
+      font-size: 24px;
+      color: teal;
+      font-weight: bold;
+    }
+    .section {
+      background: white;
+      margin-top: 12px;
+      padding: 16px;
+      border-radius: 10px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.05);
+    }
+    .label {
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .value {
+      margin-left: 4px;
+      color: #333;
+    }
+    .purchase {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin: 12px 0;
+    }
+    .quantity-control {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .quantity-control button {
+      font-size: 18px;
+      padding: 6px 12px;
+      border-radius: 50%;
+      border: 1px solid #ccc;
+      background: white;
+      cursor: pointer;
+    }
+    .total-price {
+      font-size: 22px;
+      color: #009688;
+      font-weight: bold;
+    }
+    .buy-button {
+      background-color: #009688;
+      color: white;
+      padding: 12px;
+      border: none;
+      width: 100%;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .note {
+      font-size: 13px;
+      color: #666;
+      text-align: center;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="price">₹0.80 <span style="font-size:14px; color:gray;">/liter</span></div>
+    <p>Irrigation water rights for agricultural use. Sourced from local reservoir.</p>
+
+    <div class="section">
+      <div class="label">Available Quantity: <span class="value">50,000 liters</span></div>
+      <div class="label">Location: <span class="value">Fresno, CA</span></div>
+      <div class="label">Seller: <span class="value">Farm Water Solutions</span></div>
+      <div class="label">Listed On: <span class="value">31/03/2025</span></div>
+    </div>
+
+    <div class="section">
+      <h3>Purchase Water</h3>
+      <div class="purchase">
+        <span>Quantity (liters)</span>
+        <div class="quantity-control">
+          <button onclick="updateQuantity(-100)">-</button>
+          <span id="quantity">1000</span>
+          <button onclick="updateQuantity(100)">+</button>
+        </div>
+      </div>
+      <div class="total-price">Total Price: ₹<span id="totalPrice">800.00</span></div>
+      <button class="buy-button">Buy Now</button>
+      <p class="note">* A 3% platform fee will be added to the transaction</p>
+    </div>
+  </div>
+
+  <script>
+    let pricePerLiter = 0.80;
+    let quantity = 1000;
+
+    function updateQuantity(change) {
+      quantity += change;
+      if (quantity < 100) quantity = 100;
+      document.getElementById('quantity').innerText = quantity;
+      document.getElementById('totalPrice').innerText = (quantity * pricePerLiter).toFixed(2);
+    }
+  </script>
+</body>
+</html>
